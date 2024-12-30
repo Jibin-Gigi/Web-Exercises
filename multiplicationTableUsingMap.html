@@ -4,13 +4,9 @@
     let numbers = [1, 2, 3, 4, 5]
     let multipliers = [1, 2, 3, 4, 5]
 
-    let createTables = (number, multiplier) => {
-        return "<p>" + String(number) + " x " + String(multiplier) + " = " + String(number * multiplier) + "</p>"; 
-    }
-    let result = numbers.map(n =>(multipliers.map(x => createTables(n, x))).join("\n"))
+    let createTables = (number, multiplier) => "<p>" + String(number) + " x " + String(multiplier) + " = " + String(number * multiplier) + "</p>"; 
     
-    document.getElementById("table").innerHTML = (result.map( table => {
-        console.table(table)
-        return '<div style="padding: 8px 16px; background-color: bisque; margin-right: 16px">' + table + "</div>"
-    })).join("\n")
+    let result = numbers.map(n => multipliers.map(x => createTables(n, x)).join("\n"))
+
+    document.getElementById("table").innerHTML = result.map( table => '<div style="padding: 8px 16px; background-color: bisque; margin-right: 16px">' + table + "</div>").join("\n")
 </script>
