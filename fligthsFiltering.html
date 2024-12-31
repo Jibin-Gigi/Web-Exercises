@@ -1,0 +1,60 @@
+<div style="margin: 8px;">
+    <h2>Flights from Kochi to Trivandum</h2>
+    <ul id="flights"></ul>
+
+    <input type="checkbox" id="stop1" style="margin-right: 6px;" onclick="toggleStop(1)">
+    <label for="stop1">1 stops</label>
+
+    <input type="checkbox" id="stop2" style="margin-right: 6px;" onclick="toggleStop(2)">
+    <label for="stop2">2 stops</label>
+
+    <input type="checkbox" id="stop0" style="margin-right: 6px;" onclick="toggleStop(0)">
+    <label for="stop0">Direct</label>
+
+</div>
+
+<script>
+    let flights = [
+        { airline: "Air India", stops: 0 },
+        { airline: "SriLankan Airlines", stops: 2 },
+        { airline: "British Airways", stops: 1 },
+        { airline: "Etihad Airways", stops: 1 },
+        { airline: "Thai Airways", stops: 2 },
+        { airline: "Singapore Air", stops: 2 },
+        { airline: "Air France", stops: 2 },
+        { airline: "Qatar Airways", stops: 1 },
+        { airline: "Lufthansa", stops: 1 },
+    ]
+
+    let checkboxSelect = { 1: false, 2: false, 0: false}
+    
+    let toggleStop = (key) => {
+        checkboxSelect[key] = !checkboxSelect[key]
+        render();
+    }
+
+    let flightsFilter = () => {
+        let flightsSelected = flights.filter(item => checkboxSelect[item.stops] === true )
+        
+        if (flightsSelected.length === 0){
+            flightsSelected = flights
+        }
+
+        return flightsSelected
+    }
+
+    let createListElements = (item) => "<li>" + item.airline + "</li>"
+
+    let htmlView = flightsSelected => flightsSelected.map(createListElements).join("\n")
+
+    let render = () =>{
+
+        let html = htmlView(flightsFilter())
+        
+        document.getElementById("flights").innerHTML = html
+    }
+    
+    render();
+    
+        
+</script>
