@@ -1,1 +1,1 @@
-# Web-Exercises
+# JavaScript-Exercises
